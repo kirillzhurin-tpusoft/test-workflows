@@ -1,0 +1,62 @@
+name: Move Truck and Generate Configurations
+
+# Controls when the workflow will run
+on:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+    inputs:
+      src_client:
+        description: 'Source client name'
+        required: true
+        type: string
+      src_site:
+        description: 'Source site name'
+        required: false
+        type: string
+      src_install:
+        description: 'Source install hostname (truck to move)'
+        required: false
+        type: string
+      dest_client:
+        description: 'Destination client name'
+        required: true
+        type: string
+      dest_site:
+        description: 'Destination site name'
+        required: false
+        type: string
+      dest_install_name:
+        description: 'Destination install name'
+        required: false
+        type: string
+      dest_vehicle_model:
+        description: 'Destination vehicle model'
+        required: false
+        type: string
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  move-truck-and-generate:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v4
+      - name: Sleep for 15 seconds
+        run: sleep 15s
+      - name: Summary
+        run: |
+          echo "## Move Truck and Generate Configurations Results" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Move Operation" >> $GITHUB_STEP_SUMMARY
+          echo "- Source Client: ${{ inputs.src_client }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Source Site: ${{ inputs.src_site || 'N/A' }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Source Install: ${{ inputs.src_install || 'N/A' }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Destination Client: ${{ inputs.dest_client || 'N/A' }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Destination Site: ${{ inputs.dest_site || 'N/A' }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Destination Install Name: ${{ inputs.dest_install_name || 'Preserved' }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Destination Vehicle Model: ${{ inputs.dest_vehicle_model || 'Preserved' }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
