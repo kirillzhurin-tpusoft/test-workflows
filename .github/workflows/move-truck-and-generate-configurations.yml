@@ -54,8 +54,8 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
-      - name: Sleep for 15 seconds
-        run: sleep 15s
+      - name: Sleep for 30 seconds
+        run: sleep 30s
       - name: Summary
         run: |
           echo "## Move Truck and Generate Configurations Results" >> $GITHUB_STEP_SUMMARY
